@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <title>聂陈可22311108129</title>
+  <meta charset="UTF-8">
+  <script src="js/echarts.min.js"></script>
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px"></div>
+<script>
+  var pieData = [
+    {
+      value: 11231,
+      name: "淘宝",
+    },
+    {
+      value: 22673,
+      name: "京东"
+    },
+    {
+      value: 6123,
+      name: "唯品会"
+    },
+    {
+      value: 8989,
+      name: "1号店"
+    },
+    {
+      value: 6700,
+      name: "聚美优品"
+    }
+  ]
+
+  var option = {
+    series: [
+      {
+        type: 'pie',
+        data: pieData,
+        label: {
+          show: true,
+          formatter: function (arg) {
+            return arg.data.name + '平台' + arg.data.value + '元\n' + arg.percent + '%'
+          }
+        },
+        roseType: 'radius',
+        selectedMode: 'multiple',
+        selectedOffset: 30
+      }
+    ]
+  }
+
+  var mCharts = echarts.init(document.querySelector("#main"))
+  mCharts.setOption(option)
+</script>
+</body>
+</html>

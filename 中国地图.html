@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>汽车仪表盘 22311108129 聂陈可</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+</head>
+<body>
+<div id="niechenke" style="width: 1000px;height: 800px;"></div>
+<script>
+  var myChart = echarts.init(document.getElementById('niechenke'));
+  var option = {
+    backgroundColor: '#fff',
+    title: {
+      text: '2311108129 聂陈可',
+      left: 'center',
+      top: 20,
+      textStyle: {
+        color: '#333'
+      }
+    },
+    series: [
+      {
+        name: '速度',
+        type: 'gauge',
+        radius: '70%',
+        pointer: {
+          width: 5
+        },
+        axisLine: {
+          lineStyle: {
+            width: 20
+          }
+        },
+        axisLabel: {
+          distance: 30
+        },
+        splitLine: {
+          length: 25
+        },
+        itemStyle: {
+          color: '#F57C00'
+        },
+        min: 0,
+        max: 220,
+        detail: {
+          valueAnimation: true,
+          formatter: '{value} km/h'
+        },
+        data: [{value: 120, name: '当前速度'}]
+      },
+      {
+        name: '转速',
+        type: 'gauge',
+        center: ['10%', '50%'],
+        radius: '50%',
+        detail: {
+          valueAnimation: true,
+          formatter: '{value} rpm'
+        },
+        data: [{value: 2500, name: '转速'}]
+      },
+      {
+        name: '油量',
+        type: 'gauge',
+        center: ['90%', '50%'],
+        radius: '50%',
+        detail: {
+          valueAnimation: true,
+          formatter: '{value}%'
+        },
+        data: [{value: 80, name: '油量'}]
+      },
+    ]
+  };
+  myChart.setOption(option);
+</script>
+</body>
+</html>

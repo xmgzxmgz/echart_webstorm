@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <title>聂陈可22311108129</title>
+  <meta charset="UTF-8">
+  <script src="js/echarts.min.js"></script>
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;"></div>
+<div id="lineChart" style="width: 600px;height:400px;margin-top:50px;"></div>
+<script>
+  var pieData = [
+    {
+      value: 11231,
+      name: "淘宝",
+    },
+    {
+      value: 22673,
+      name: "京东"
+    },
+    {
+      value: 6123,
+      name: "唯品会"
+    },
+    {
+      value: 8989,
+      name: "1号店"
+    },
+    {
+      value: 6700,
+      name: "聚美优品"
+    }
+  ]
+
+  var option = {
+    series: [
+      {
+        type: 'pie',
+        data: pieData,
+        label: {
+          show: true,
+          formatter: function (arg) {
+            return arg.data.name + '平台' + arg.data.value + '元\n' + arg.percent + '%'
+          }
+        },
+      }
+    ],
+    legend: {
+      data: ['猫', '狗', '驴', '鲲'],
+      top: 10,  // 图例距离顶部的距离
+      itemWidth: 10,  // 图例标记的图形宽度
+      itemHeight: 10, // 图例标记的图形高度
+    }
+  }
+
+  var mCharts = echarts.init(document.querySelector("#main"))
+  mCharts.setOption(option)
+
+  var lineData = {
+    labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+    datasets: [
+      {
+        name: '猫',
+        data: [9000, 12500, 16000, 18000, 17000, 21000],
+      },
+      {
+        name: '狗',
+        data: [20000, 22000, 24000, 27000, 29000, 35000],
+      },
+      {
+        name: '驴',
+        data: [19000, 15000, 15000, 20000, 22000, 23000],
+      },
+      {
+        name: '鲲',
+        data: [11000, 16000, 18000, 18000, 19000, 23000],
+      },
+    ]
+  }
+
+  var lineOption = {
+    xAxis: {
+      type: 'category',
+      data: lineData.labels
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: lineData.datasets.map(function(dataset) {
+      return {
+        data: dataset.data,
+        type: 'line',
+        smooth: true,
+        name: dataset.name,
+        markLine: {
+          data: [
+            {type: 'average', name: '平均值'}
+          ]
+        },
+        markArea: {
+          data: [
+            [{
+              xAxis: '3月',
+              itemStyle: {
+                color: 'rgba(255, 0, 0, 0.1)'
+              }
+            }, {
+              xAxis: '4月',
+            }]
+          ]
+        }
+      }
+    }),
+    legend: {
+      data: ['猫', '狗', '驴', '鲲'],
+      top: 10,
+      itemWidth: 10,
+      itemHeight: 10,
+    }
+  }
+
+  var lineChart = echarts.init(document.querySelector("#lineChart"))
+  lineChart.setOption(lineOption)
+</script>
+</body>
+</html>
